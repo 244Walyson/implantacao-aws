@@ -51,11 +51,11 @@ jobs:
         run: aws sts get-caller-identity
 
       - name: Echo version to S3
-        run: echo aws s3 cp --quiet ./target/$BUNDLE_NAME s3://$EB_BUCKET/$EB_VERSION_KEY
+        run: echo aws s3 cp --quiet ./target/${{secrets.BUNDLE_NAME}} s3://$EB_BUCKET/$EB_VERSION_KEY
         working-directory: backend
 
       - name: Copy version to S3
-        run: aws s3 cp --quiet ./target/$BUNDLE_NAME s3://$EB_BUCKET/$EB_VERSION_KEY
+        run: aws s3 cp --quiet ./target/${{secrets.BUNDLE_NAME}} s3://$EB_BUCKET/$EB_VERSION_KEY
         working-directory: backend
 
       - name: Create EB Application Version
